@@ -2,13 +2,15 @@ package com.ss;
 
 import java.util.Scanner;
 
-public class Stars {
+/**
+ * @author Michael Acker
+ * Assignment from 3/8/2021
+ * The instructions in the notes on slide 19 did not match the example output given on slide 18.
+ * As such, I have combined the two in a way that I felt was most logical and flexible.
+ * Stars.java takes an integer n input, and prints 4 patterns up to n iterations.
+ */
 
-    /*
-    The instructions in the notes on slide 19 did not match the example output given on slide 18.
-    As such, I have combined the two in a way that I felt was most logical and flexible.
-    Stars.java takes an integer n input, and prints 4 patterns up to n iterations.
-     */
+public class Stars {
 
     public static void main(String[] args) {
         System.out.print("Please enter an integer: ");

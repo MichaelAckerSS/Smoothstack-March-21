@@ -3,7 +3,13 @@ package com.ss;
 import java.util.Random;
 import java.util.Scanner;
 
-public class guessRandom {
+/**
+ * @author Michael Acker
+ * Assignment from 3/8/21
+ * This class generates a random number and allows the user to guess it.
+ */
+
+public class GuessRandom {
 
     public static void main(String[] args) {
         Random ran = new Random();
