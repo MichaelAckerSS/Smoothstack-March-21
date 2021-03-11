@@ -1,4 +1,10 @@
-package com.ss.shapes;
+package com.ss.weekone.tues.shapes;
+
+/**
+ * @author Michael Acker
+ * Assigned 3/9/21
+ * Triangle man, triangle man.
+ */
 
 public class Triangle implements Shape {
 

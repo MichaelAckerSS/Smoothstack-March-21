@@ -1,4 +1,4 @@
-package com.ss;
+package com.ss.weekone.tues;
 
 import java.util.Scanner;
 

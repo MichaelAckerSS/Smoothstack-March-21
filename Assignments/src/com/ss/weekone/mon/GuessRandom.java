@@ -1,4 +1,4 @@
-package com.ss;
+package com.ss.weekone.mon;
 
 import java.util.Random;
 import java.util.Scanner;

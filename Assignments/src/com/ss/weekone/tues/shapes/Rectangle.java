@@ -1,4 +1,10 @@
-package com.ss.shapes;
+package com.ss.weekone.tues.shapes;
+
+/**
+ * @author Michael Acker
+ * Assigned 3/9/21
+ * It's hip to be square. This is a rectangle.
+ */
 
 public class Rectangle implements Shape {
 
