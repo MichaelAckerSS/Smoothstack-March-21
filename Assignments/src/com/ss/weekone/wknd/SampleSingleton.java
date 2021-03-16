@@ -14,7 +14,7 @@ public class SampleSingleton {
 
     public static SampleSingleton getInstance() {
         if (instance == null) {
-            synchronized (Singleton.class) {
+            synchronized (SampleSingleton.class) {
                 if (instance == null) {
                     instance = new SampleSingleton();
                 }
@@ -23,7 +23,7 @@ public class SampleSingleton {
         return instance;
     }
     //Added an SQLException and error handling
-    public static void databaseQuery(BigDecimal input) throws SQLException {
+    public static void databaseQuery(BigDecimal input) {
         try {
             conn = DriverManager.getConnection("url of database");
             Statement st = conn.createStatement();

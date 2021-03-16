@@ -9,14 +9,11 @@ public class Recursion {
         int nextTarget = target - array[startIndex];
 
         //Check for end of array and clumps
-        if (nextIndex != array.length) {
-            if (array[nextIndex] == array[startIndex]) {
-                while (nextIndex != array.length && array[nextIndex] == array[startIndex]) {
-                    //Handle clumps
-                    nextTarget = nextTarget - array[nextIndex];
-                    nextIndex++;
-                }
-            }
+
+        while (nextIndex != array.length && array[nextIndex] == array[startIndex]) {
+            //Handle clumps
+            nextTarget = nextTarget - array[nextIndex];
+            nextIndex++;
         }
 
         if (nextTarget == 0){
