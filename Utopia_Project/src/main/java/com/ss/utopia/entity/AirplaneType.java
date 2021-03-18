@@ -2,35 +2,25 @@ package com.ss.utopia.entity;
 
 import java.util.List;
 
-public class Airport {
+public class AirplaneType {
 	
-	private String id;
-	private String city;
+	private Integer id;
+	private List<Airplane> airplanes;
 	
-	private List<Route>	routes;
-	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
-	public String getCity() {
-		return city;
+	public List<Airplane> getAirplanes() {
+		return airplanes;
 	}
 	
-	public void setCity(String city) {
-		this.city = city;
-	}
-	
-	public List<Route> getRoutes() {
-		return routes;
-	}
-	
-	public void setRoutes(List<Route> routes) {
-		this.routes = routes;
+	public void setAirplanes(List<Airplane> airplanes) {
+		this.airplanes = airplanes;
 	}
 	
 	@Override
@@ -40,7 +30,7 @@ public class Airport {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -49,7 +39,7 @@ public class Airport {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Airport other = (Airport) obj;
+		AirplaneType other = (AirplaneType) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
