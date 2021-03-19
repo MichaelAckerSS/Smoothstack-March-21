@@ -51,7 +51,7 @@ public class StartupDialogue {
 			}
 		}
 		in.close();
-		session.setRole(response);
+		session.getCurrentUser().setRole(response);
 		dialogueManager.launchLogin();
 	}
 

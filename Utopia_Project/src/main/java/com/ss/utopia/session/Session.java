@@ -6,12 +6,11 @@ import com.ss.utopia.entity.User;
 public class Session {
 	
 	private DialogueManager dialogueManager;
-	private User currentUser;
-	private int role;
+	private SessionUser currentUser;
 	
-	public static void main(String[] args) {
-		Session session = new Session();
-		session.launchDialogue();
+	public Session() {
+		currentUser = new SessionUser();
+		launchDialogue();
 	}
 	
 	private void launchDialogue() {
@@ -19,23 +18,11 @@ public class Session {
 		dialogueManager.launchStartup();
 	}
 	
-	private void initUser() {
-		currentUser = new User();
-	}
-	
 	public DialogueManager getDialogueManager() {
 		return dialogueManager;
 	}
 	
-	public User getUser() {
+	public SessionUser getCurrentUser() {
 		return currentUser;
-	}
-	
-	public int getRole() {
-		return role;
-	}
-	
-	public void setRole(int newRole) {
-		this.role = newRole;
 	}
 }
