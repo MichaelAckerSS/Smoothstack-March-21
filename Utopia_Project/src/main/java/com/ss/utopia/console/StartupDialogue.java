@@ -1,11 +1,21 @@
-package console;
+package com.ss.utopia.console;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.ss.utopia.session.Session;
+
 public class StartupDialogue {
 	
-	public static void main(String[] args) {
+	private Session session;
+	private DialogueManager dialogueManager;
+	
+	public StartupDialogue(Session session) {
+		this.session = session;
+		dialogueManager = session.getDialogueManager();
+	}
+	
+	public void launch() {
 		Scanner in = new Scanner(System.in);
 		System.out.printf("Welcome to Utopia Airlines!%nWhat type of user are you? Please select:%n1. Customer%n2. Employee%n3. Administrator%n4. Guest%n");
 		Boolean valid = false;
@@ -41,8 +51,8 @@ public class StartupDialogue {
 			}
 		}
 		in.close();
-		LoginDialogue login = new LoginDialogue(response);
-		login.launch();
+		session.setRole(response);
+		dialogueManager.launchLogin();
 	}
 
 }
