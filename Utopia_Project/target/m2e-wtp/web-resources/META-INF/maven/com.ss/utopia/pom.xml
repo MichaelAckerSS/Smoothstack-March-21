@@ -6,4 +6,11 @@
   <packaging>war</packaging>
   <name>Utopia_Project</name>
   <description>Demo project for Smoothstack evaluation</description>
+  <dependencies>
+  	<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.23</version>
+	</dependency>
+  </dependencies>
 </project>

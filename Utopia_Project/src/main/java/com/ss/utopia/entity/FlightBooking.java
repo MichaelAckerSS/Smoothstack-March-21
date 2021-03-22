@@ -2,28 +2,28 @@ package com.ss.utopia.entity;
 
 public class FlightBooking {
 	
-	private Flight flight;
-	private Booking booking;
+	private Integer flightID;
+	private Integer bookingID;
 	
-	public Flight getFlight() {
-		return flight;
+	public Integer getFlightID() {
+		return flightID;
 	}
-	public void setFlight(Flight flight) {
-		this.flight = flight;
+	public void setFlightID(Integer flight) {
+		this.flightID = flight;
 	}
-	public Booking getBooking() {
-		return booking;
+	public Integer getBookingID() {
+		return bookingID;
 	}
-	public void setBooking(Booking booking) {
-		this.booking = booking;
+	public void setBookingID(Integer booking) {
+		this.bookingID = booking;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((booking == null) ? 0 : booking.hashCode());
-		result = prime * result + ((flight == null) ? 0 : flight.hashCode());
+		result = prime * result + ((bookingID == null) ? 0 : bookingID.hashCode());
+		result = prime * result + ((flightID == null) ? 0 : flightID.hashCode());
 		return result;
 	}
 	
@@ -36,15 +36,15 @@ public class FlightBooking {
 		if (getClass() != obj.getClass())
 			return false;
 		FlightBooking other = (FlightBooking) obj;
-		if (booking == null) {
-			if (other.booking != null)
+		if (bookingID == null) {
+			if (other.bookingID != null)
 				return false;
-		} else if (!booking.equals(other.booking))
+		} else if (!bookingID.equals(other.bookingID))
 			return false;
-		if (flight == null) {
-			if (other.flight != null)
+		if (flightID == null) {
+			if (other.flightID != null)
 				return false;
-		} else if (!flight.equals(other.flight))
+		} else if (!flightID.equals(other.flightID))
 			return false;
 		return true;
 	}

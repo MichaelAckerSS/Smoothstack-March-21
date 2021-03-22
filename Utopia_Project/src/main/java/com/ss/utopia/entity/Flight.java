@@ -6,12 +6,11 @@ import java.util.List;
 public class Flight {
 	
 	private Integer id;
-	private Route route;
-	private Airplane airplane;
-	private ZonedDateTime departureTime;
+	private Integer routeID;
+	private Integer airplaneID;
+	private String departureTime;
 	private Integer reservedSeats;
 	private float seatPrice;
-	private List<FlightBooking> flightBookings;
 	
 	public Integer getId() {
 		return id;
@@ -21,27 +20,27 @@ public class Flight {
 		this.id = id;
 	}
 	
-	public Route getRoute() {
-		return route;
+	public Integer getRouteID() {
+		return routeID;
 	}
 	
-	public void setRoute(Route route) {
-		this.route = route;
+	public void setRouteID(Integer route) {
+		this.routeID = route;
 	}
 	
-	public Airplane getAirplane() {
-		return airplane;
+	public Integer getAirplaneID() {
+		return airplaneID;
 	}
 	
-	public void setAirplane(Airplane airplane) {
-		this.airplane = airplane;
+	public void setAirplaneID(Integer airplane) {
+		this.airplaneID = airplane;
 	}
 	
-	public ZonedDateTime getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
 	
-	public void setDepartureTime(ZonedDateTime departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
 	
@@ -61,14 +60,6 @@ public class Flight {
 		this.seatPrice = seatPrice;
 	}
 	
-	public List<FlightBooking> getFlightBookings() {
-		return flightBookings;
-	}
-	
-	public void setFlightBookings(List<FlightBooking> flightBookings) {
-		this.flightBookings = flightBookings;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

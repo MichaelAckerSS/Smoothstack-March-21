@@ -3,8 +3,8 @@ package com.ss.utopia.entity;
 public class Airplane {
 	
 	private Integer id;
-	private AirplaneType type;
-	private Flight flight;
+	private Integer typeID;
+	private Integer flightID;
 	
 	public Integer getId() {
 		return id;
@@ -14,20 +14,20 @@ public class Airplane {
 		this.id = id;
 	}
 	
-	public AirplaneType getType() {
-		return type;
+	public Integer getTypeID() {
+		return typeID;
 	}
 	
-	public void setType(AirplaneType type) {
-		this.type = type;
+	public void setType(Integer type) {
+		this.typeID = type;
 	}
 	
-	public Flight getFlight() {
-		return flight;
+	public Integer getFlightID() {
+		return flightID;
 	}
 	
-	public void setFlight(Flight flight) {
-		this.flight = flight;
+	public void setFlightID(Integer flight) {
+		this.flightID = flight;
 	}
 	
 	@Override

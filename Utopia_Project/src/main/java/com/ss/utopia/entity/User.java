@@ -3,14 +3,13 @@ package com.ss.utopia.entity;
 public class User {
 	
 	private Integer id;
+	private Integer role;
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String email;
 	private String password;
 	private String phone;
-	
-	private UserRole role;
 
 	public Integer getId() {
 		return id;
@@ -68,11 +67,11 @@ public class User {
 		this.phone = phone;
 	}
 
-	public UserRole getRole() {
+	public Integer getRole() {
 		return role;
 	}
 
-	public void setRole(UserRole role) {
+	public void setRole(Integer role) {
 		this.role = role;
 	}
 

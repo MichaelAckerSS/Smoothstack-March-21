@@ -2,15 +2,11 @@ package com.ss.utopia.entity;
 
 import java.util.List;
 
-public abstract class Booking {
+public class Booking {
 	
 	private Integer id;
 	private Boolean isActive;
 	private String confirmationCode;
-	
-	private List<FlightBooking> flightBookings;
-	private List<Passenger> passengers;
-	private BookingPayment payment;
 	
 	public Integer getId() {
 		return id;
@@ -34,30 +30,6 @@ public abstract class Booking {
 	
 	public void setConfirmationCode(String confirmationCode) {
 		this.confirmationCode = confirmationCode;
-	}
-	
-	public List<FlightBooking> getFlightBookings() {
-		return flightBookings;
-	}
-	
-	public void setFlightBookings(List<FlightBooking> flightBookings) {
-		this.flightBookings = flightBookings;
-	}
-	
-	public List<Passenger> getPassengers() {
-		return passengers;
-	}
-	
-	public void setPassengers(List<Passenger> passengers) {
-		this.passengers = passengers;
-	}
-	
-	public BookingPayment getPayment() {
-		return payment;
-	}
-	
-	public void setPayment(BookingPayment payment) {
-		this.payment = payment;
 	}
 	
 	@Override

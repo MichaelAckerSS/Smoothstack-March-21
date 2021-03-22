@@ -5,7 +5,7 @@ import java.util.List;
 public class AirplaneType {
 	
 	private Integer id;
-	private List<Airplane> airplanes;
+	private Integer capacity;;
 	
 	public Integer getId() {
 		return id;
@@ -15,12 +15,12 @@ public class AirplaneType {
 		this.id = id;
 	}
 	
-	public List<Airplane> getAirplanes() {
-		return airplanes;
+	public Integer getCapacity() {
+		return capacity;
 	}
 	
-	public void setAirplanes(List<Airplane> airplanes) {
-		this.airplanes = airplanes;
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
 	}
 	
 	@Override

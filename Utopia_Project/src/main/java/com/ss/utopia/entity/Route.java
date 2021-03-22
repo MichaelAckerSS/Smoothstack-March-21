@@ -6,8 +6,8 @@ public class Route {
 	
 	private Integer id;
 	
-	private Airport origin;
-	private Airport destination;
+	private String origin;
+	private String destination;
 	private List<Flight> flights;
 	
 	public Integer getId() {
@@ -18,19 +18,19 @@ public class Route {
 		this.id = id;
 	}
 	
-	public Airport getOrigin() {
+	public String getOrigin() {
 		return origin;
 	}
 	
-	public void setOrigin(Airport origin) {
+	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
 	
-	public Airport getDestination() {
+	public String getDestination() {
 		return destination;
 	}
 	
-	public void setDestination(Airport destination) {
+	public void setDestination(String destination) {
 		this.destination = destination;
 	}
 	
