@@ -15,9 +15,9 @@ public class StartupDialogue extends Dialogue {
 	}
 	
 	public void launch() {
-		String options = "Please select:%n1. Administrator%n2. Employee%n3. Traveler%n4. Guest%n";
-		System.out.printf("Welcome to Utopia Airlines!%nWhat type of user are you? " + options);
-		int response = dialogueManager.getIntResponse(4, options);
+		String options = "Please select:%n1. Administrator%n2. Employee%n3. Traveler%n4. Guest%n5. Quit%n";
+		System.out.printf("Welcome to Utopia Airlines!%n%nWhat type of user are you? " + options);
+		int response = dialogueManager.getIntResponse(5, options);
 			switch(response) {
 			case 1: 
 				System.out.println("Proceeding to administrator login...");
@@ -30,6 +30,10 @@ public class StartupDialogue extends Dialogue {
 				break;
 			case 4: 
 				System.out.println("Proceeding as guest...");
+				break;
+			case 5: 
+				System.out.println("Have a nice day!");
+				System.exit(0);
 				break;
 			default: 
 				System.out.printf("Sorry, something went wrong.");

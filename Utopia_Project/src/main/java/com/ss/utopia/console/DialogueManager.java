@@ -12,6 +12,7 @@ public class DialogueManager {
 	private LoginDialogue login;
 	private TravelerDialogue traveler;
 	private AdminDialogue admin;
+	private EmployeeDialogue employee;
 	
 	public DialogueManager(Session session) {
 		this.session = session;
@@ -35,6 +36,11 @@ public class DialogueManager {
 	public void launchAdmin() {
 		admin = new AdminDialogue(session);
 		admin.launch();
+	}
+	
+	public void launchEmployee() {
+		employee = new EmployeeDialogue(session);
+		employee.launch();
 	}
 	
 	public int getIntResponse(int max, String options) {

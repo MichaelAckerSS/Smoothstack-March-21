@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.ss.utopia.service.AdminService;
+import com.ss.utopia.service.EmployeeService;
 import com.ss.utopia.service.TravelerService;
 import com.ss.utopia.session.Session;
 
@@ -48,7 +49,32 @@ public class LoginDialogue extends Dialogue {
 				}
 				break;
 			case 2:
-				System.out.println("No EmployeeService exists yet!");
+				EmployeeService eService = new EmployeeService();
+				this.getSession().setService(eService);
+				try {
+					Map<String,String> logins = eService.getEmployeeLogins();
+					Scanner sc = this.getSession().getScanner();
+					System.out.println("Username:");
+					String userIn = sc.next();
+					if(!logins.containsKey(userIn)) {
+						System.out.println("Username not found.");
+						break;
+					} else {
+						System.out.println("Password for username " + userIn + ":");
+						String passIn = sc.next();
+						if (logins.get(userIn).equals(passIn)) {
+							this.getSession().loginUser(userIn);
+							this.getSession().getDialogueManager().launchEmployee();
+							break;
+						} else {
+							System.out.println("Incorrect password.");
+							break;
+						}
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("Unable to access users");
+				}
 				break;
 			case 3:
 				TravelerService tService = new TravelerService();

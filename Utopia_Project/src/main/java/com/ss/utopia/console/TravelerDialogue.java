@@ -50,19 +50,12 @@ public class TravelerDialogue extends Dialogue {
 		try {
 			List<Flight> flights = service.getAllFlights();
 			int count = 1;
+			System.out.format("%-21s%-16s%-16s%-16s%n", "     FLIGHT #","ROUTE","DEPARTURE DATE", "DEPARTURE TIME");
 			for (Flight f : flights) {
-				int seatsLeft = service.getCapacity(f) - f.getReservedSeats();
-				if(seatsLeft > 0) {
+				if(f.getTotalAvailableSeats() > 0) {
 					Route r = service.getRouteFromID(f.getRouteID());
-					String origin = r.getOrigin();
-					String dest = r.getDestination();
-					System.out.printf("%d.   FLIGHT #: ",count);
-					System.out.print(f.getId());
-					System.out.print("   ROUTE: " + origin + " -> " + dest);
-					System.out.print("   DEPARTURE TIME: ");
-					System.out.print(f.getDepartureTime());
-					System.out.print("   SEATS LEFT: ");
-					System.out.println(seatsLeft);
+					String rs = r.getOrigin() + " -> " + r.getDestination();
+					System.out.format("%d%-4s%-16d%-16s%-16s%-16s%n", count,".", f.getId(), rs,f.getDepartureDate(), f.getDepartureTime());
 					count++;
 				}
 			}
@@ -72,12 +65,30 @@ public class TravelerDialogue extends Dialogue {
 			int choice = this.getSession().getDialogueManager().getIntResponse(cancel, "Please choose a flight or cancel%n");
 			if (choice < cancel) {
 				Flight chosenFlight = flights.get(choice - 1);
-				System.out.println("Booked!");
-				String conf = service.bookFlight(chosenFlight, this.getSession().getCurrentUser());
-				System.out.println("Confirmation code: " + conf);
+				
+				//Add seat class options
+				//Remember to subtract from flight
+				System.out.println("Seating options for Flight " + chosenFlight.getId() + "\n");
+				System.out.format("%-6s%-16s%-12f%-12s%d%n%n", "1.", "FIRST CLASS:",chosenFlight.getSeatPriceFirstclass(), 
+						"QUANTITY:", chosenFlight.getTotalSeatsFirstclass() - chosenFlight.getReservedSeatsFirstclass());
+				System.out.format("%-6s%-16s%-12f%-12s%d%n%n","2.", "BUSINESS CLASS:",chosenFlight.getSeatPriceBusiness(),
+						"QUANTITY:", chosenFlight.getTotalSeatsBusiness() - chosenFlight.getReservedSeatsBusiness());
+				System.out.format("%-6s%-16s%-12f%-12s%d%n%n","3.", "ECONOMY CLASS:",chosenFlight.getSeatPriceEconomy(), 
+						"QUANTITY:", chosenFlight.getTotalSeatsEconomy() - chosenFlight.getReservedSeatsEconomy());
+				System.out.println("4. Cancel");
+				choice = this.getSession().getDialogueManager().getIntResponse(4, "Please select a seat or cancel%n");
+				int seatClass = 0;
+				if (choice == 4) {
+					bookTicket();
+				} else {
+					seatClass = choice;
+					System.out.println("Booked!");
+					String conf = service.bookFlight(chosenFlight, this.getSession().getCurrentUser(), seatClass);
+					System.out.println("Confirmation code: " + conf);
+				}
 				runFirstMenu();
 			} else {
-				System.out.println("Operation canceled.");
+				System.out.println("Operation canceled.\n");
 				runFirstMenu();
 			}
 		} catch (SQLException e) {

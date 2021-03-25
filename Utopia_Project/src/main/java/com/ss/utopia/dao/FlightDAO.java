@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ss.utopia.entity.Airport;
 import com.ss.utopia.entity.Flight;
 
 public class FlightDAO extends BaseDAO<Flight>{
@@ -14,11 +16,22 @@ public class FlightDAO extends BaseDAO<Flight>{
 	}
 	
 	public void saveFlight(Flight f) throws ClassNotFoundException, SQLException {
-		save("insert into flight values (?, ?, ?, ?, ?, ?)", new Object[] {f.getId(), f.getRouteID(), f.getAirplaneID(), f.getDepartureTime(), f.getReservedSeats(), f.getSeatPrice()});
+		save("insert into flight values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", new Object[] {f.getId(), f.getRouteID(), f.getAirplaneID(), f.getDepartureDate(), f.getDepartureTime(),
+				f.getReservedSeatsFirstclass(), f.getReservedSeatsBusiness(), f.getReservedSeatsEconomy(), f.getTotalSeatsFirstclass(), f.getTotalSeatsBusiness(), 
+				f.getTotalSeatsEconomy(), f.getSeatPriceFirstclass(), f.getSeatPriceBusiness(), f.getReservedSeatsEconomy()});
 	}
 	
-	public void updateFlightSeats(Flight f) throws ClassNotFoundException, SQLException {
-		save("update flight set reserved_seats = ? where id = ?", new Object[] {f.getReservedSeats(), f.getId()});
+	public void updateFlight(Flight f) throws ClassNotFoundException, SQLException {
+		save("update flight set route_id = ?, airplane_id = ?, departure_date = ?, departure_time = ?, reserved_seats_firstclass = ?, reserved_seats_business = ?,"
+				+ "reserved_seats_economy = ?, seats_firstclass = ?, seats_business = ?, seats_economy = ?, seat_price_firstclass = ?, seat_price_business = ?, seat_price_economy = ?"
+				+ " where id = ?", new Object[] {f.getRouteID(), f.getAirplaneID(), f.getDepartureDate(), f.getDepartureTime(),
+				f.getReservedSeatsFirstclass(), f.getReservedSeatsBusiness(), f.getReservedSeatsEconomy(), f.getTotalSeatsFirstclass(), f.getTotalSeatsBusiness(), 
+				f.getTotalSeatsEconomy(), f.getSeatPriceFirstclass(), f.getSeatPriceBusiness(), f.getReservedSeatsEconomy(), f.getId()});
+	}
+	
+	public void updateReservedSeats(Flight f) throws ClassNotFoundException, SQLException {
+		save("update flight set reserved_seats_firstclass = ?, reserved_seats_business = ?, reserved_seats_economy = ? where id = ?", new Object[] {f.getReservedSeatsFirstclass(),
+				f.getReservedSeatsBusiness(), f.getReservedSeatsEconomy(), f.getId()});
 	}
 	
 	public List<Flight> readAllFlights() throws ClassNotFoundException, SQLException {
@@ -29,6 +42,10 @@ public class FlightDAO extends BaseDAO<Flight>{
 		List<Flight> list = read("select * from flight where id = ?", new Object[] {id});
 		return list.get(0);
 	}
+	
+	public void deleteFlight(Flight flight) throws ClassNotFoundException, SQLException {
+		save("delete from flight where id = ?", new Object[] {flight.getId()});
+	}
 
 	@Override
 	public List<Flight> extractData(ResultSet rs) throws ClassNotFoundException, SQLException {
@@ -38,9 +55,17 @@ public class FlightDAO extends BaseDAO<Flight>{
 			f.setId(rs.getInt("id"));
 			f.setRouteID(rs.getInt("route_id"));
 			f.setAirplaneID(rs.getInt("airplane_id"));
+			f.setDepartureDate(rs.getString("departure_date"));
 			f.setDepartureTime(rs.getString("departure_time"));
-			f.setReservedSeats(rs.getInt("reserved_seats"));
-			f.setSeatPrice(rs.getFloat("seat_price"));
+			f.setReservedSeatsFirstclass(rs.getInt("reserved_seats_firstclass"));
+			f.setReservedSeatsBusiness(rs.getInt("reserved_seats_business"));
+			f.setReservedSeatsEconomy(rs.getInt("reserved_seats_economy"));
+			f.setTotalSeatsFirstclass(rs.getInt("seats_firstclass"));
+			f.setTotalSeatsBusiness(rs.getInt("seats_business"));
+			f.setTotalSeatsEconomy(rs.getInt("seats_economy"));
+			f.setSeatPriceFirstclass(rs.getFloat("seat_price_firstclass"));
+			f.setSeatPriceBusiness(rs.getFloat("seat_price_business"));
+			f.setSeatPriceEconomy(rs.getFloat("seat_price_economy"));
 			flights.add(f);
 		}
 		return flights;

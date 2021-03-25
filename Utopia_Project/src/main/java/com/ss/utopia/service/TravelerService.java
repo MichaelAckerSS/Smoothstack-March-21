@@ -79,48 +79,6 @@ public class TravelerService extends Service{
 		}
 	}
 	
-	public String bookFlight(Flight flight, User user) throws SQLException {
-		Connection conn = null;
-		try {
-			conn = util.getConnection();
-			Booking booking = new Booking();
-			BookingUser bookingUser = new BookingUser();
-			
-			byte[] array = new byte[8];
-		    new Random().nextBytes(array);
-		    String confCode = new String(array, Charset.forName("UTF-8"));
-		    confCode = "testcode";
-		    
-		    booking.setConfirmationCode(confCode);
-		    booking.setIsActive(true);
-		    BookingDAO bdao = new BookingDAO(conn);
-		    bookingUser.setUserID(user.getId());
-			int bookingID = bdao.addBooking(booking);
-			bookingUser.setBookingID(bookingID);
-			BookingUserDAO budao = new BookingUserDAO(conn);
-			budao.addBookingUser(bookingUser);
-			int seats = flight.getReservedSeats();
-			flight.setReservedSeats(seats + 1);
-			FlightDAO fdao = new FlightDAO(conn);
-			fdao.updateFlightSeats(flight);
-			FlightBookingDAO fbdao = new FlightBookingDAO(conn);
-			FlightBooking fb = new FlightBooking();
-			fb.setFlightID(flight.getId());
-			fb.setBookingID(bookingID);
-			fbdao.addFlightBooking(fb);
-			conn.commit();
-			return confCode;
-					
-		}catch(Exception e) {
-			e.printStackTrace();
-			conn.rollback();
-			return null;
-		}finally{
-			if(conn!=null) {
-				conn.close();
-			}
-		}
-	}
 
 	public List<Flight> getFlightsFromUser(User currentUser) throws SQLException {
 		Connection conn = null;
@@ -129,6 +87,7 @@ public class TravelerService extends Service{
 			BookingUserDAO budao = new BookingUserDAO(conn);
 			FlightBookingDAO fbdao = new FlightBookingDAO(conn);
 			BookingDAO bdao = new BookingDAO(conn);
+			
 			List<BookingUser> bookingUsers = budao.readBookingUsersByUserID(currentUser.getId());
 			List<FlightBooking> flightBookings = new ArrayList<FlightBooking>();
 			for (BookingUser bu : bookingUsers) {
@@ -165,6 +124,8 @@ public class TravelerService extends Service{
 			Integer flightID = flight.getId();
 			FlightBookingDAO fbdao = new FlightBookingDAO(conn);
 			BookingUserDAO budao = new BookingUserDAO(conn);
+			BookingDAO bdao = new BookingDAO(conn);
+			
 			List<FlightBooking> flightBookings = fbdao.readFromFlightID(flightID);
 			List<BookingUser> bookingUsers = budao.readBookingUsersByUserID(user.getId());
 			int bookingID = 0;
@@ -175,7 +136,7 @@ public class TravelerService extends Service{
 					}
 				}
 			}
-			BookingDAO bdao = new BookingDAO(conn);
+		
 			bdao.cancelBookingByID(bookingID);
 			conn.commit();
 					

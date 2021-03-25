@@ -8,9 +8,39 @@ public class Flight {
 	private Integer id;
 	private Integer routeID;
 	private Integer airplaneID;
+	private String departureDate;
 	private String departureTime;
-	private Integer reservedSeats;
-	private float seatPrice;
+	private Integer reservedSeatsFirstclass;
+	private Integer reservedSeatsBusiness;
+	private Integer reservedSeatsEconomy;
+	private Integer totalSeatsFirstclass;
+	private Integer totalSeatsBusiness;
+	private Integer totalSeatsEconomy;
+	private float seatPriceFirstclass;
+	private float seatPriceBusiness;
+	private float seatPriceEconomy;
+	
+	public int getTotalAvailableSeats() {
+		int totalSeats = this.totalSeatsFirstclass + this.totalSeatsBusiness + this.totalSeatsEconomy;
+		int totalReserved = this.reservedSeatsFirstclass + this.reservedSeatsBusiness + this.reservedSeatsEconomy;
+		return totalSeats - totalReserved;
+	}
+	
+	public void reserveSeat(int seatClass) {
+		switch(seatClass) {
+			case 1: 
+				this.setReservedSeatsFirstclass(this.reservedSeatsFirstclass + 1);
+				break;
+			case 2:
+				this.setReservedSeatsBusiness(this.reservedSeatsBusiness + 1);
+				break;
+			case 3:
+				this.setReservedSeatsEconomy(this.reservedSeatsEconomy + 1);
+				break;
+			default:
+				System.out.println("Failed to reserve seat");
+		}
+	}
 	
 	public Integer getId() {
 		return id;
@@ -44,22 +74,87 @@ public class Flight {
 		this.departureTime = departureTime;
 	}
 	
-	public Integer getReservedSeats() {
-		return reservedSeats;
+	public String getDepartureDate() {
+		return departureDate;
 	}
 	
-	public void setReservedSeats(Integer reservedSeats) {
-		this.reservedSeats = reservedSeats;
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
 	}
-	
-	public float getSeatPrice() {
-		return seatPrice;
+
+
+	public Integer getReservedSeatsFirstclass() {
+		return reservedSeatsFirstclass;
 	}
-	
-	public void setSeatPrice(float seatPrice) {
-		this.seatPrice = seatPrice;
+
+	public void setReservedSeatsFirstclass(Integer reservedSeatsFirstclass) {
+		this.reservedSeatsFirstclass = reservedSeatsFirstclass;
 	}
-	
+
+	public Integer getReservedSeatsBusiness() {
+		return reservedSeatsBusiness;
+	}
+
+	public void setReservedSeatsBusiness(Integer reservedSeatsBusiness) {
+		this.reservedSeatsBusiness = reservedSeatsBusiness;
+	}
+
+	public Integer getReservedSeatsEconomy() {
+		return reservedSeatsEconomy;
+	}
+
+	public void setReservedSeatsEconomy(Integer reservedSeatsEconomy) {
+		this.reservedSeatsEconomy = reservedSeatsEconomy;
+	}
+
+	public Integer getTotalSeatsFirstclass() {
+		return totalSeatsFirstclass;
+	}
+
+	public void setTotalSeatsFirstclass(Integer totalSeatsFirstclass) {
+		this.totalSeatsFirstclass = totalSeatsFirstclass;
+	}
+
+	public Integer getTotalSeatsBusiness() {
+		return totalSeatsBusiness;
+	}
+
+	public void setTotalSeatsBusiness(Integer totalSeatsBusiness) {
+		this.totalSeatsBusiness = totalSeatsBusiness;
+	}
+
+	public Integer getTotalSeatsEconomy() {
+		return totalSeatsEconomy;
+	}
+
+	public void setTotalSeatsEconomy(Integer totalSeatsEconomy) {
+		this.totalSeatsEconomy = totalSeatsEconomy;
+	}
+
+	public float getSeatPriceFirstclass() {
+		return seatPriceFirstclass;
+	}
+
+	public void setSeatPriceFirstclass(float seatPriceFirstclass) {
+		this.seatPriceFirstclass = seatPriceFirstclass;
+	}
+
+	public float getSeatPriceBusiness() {
+		return seatPriceBusiness;
+	}
+
+	public void setSeatPriceBusiness(float seatPriceBusiness) {
+		this.seatPriceBusiness = seatPriceBusiness;
+	}
+
+	public float getSeatPriceEconomy() {
+		return seatPriceEconomy;
+	}
+
+	public void setSeatPriceEconomy(float seatPriceEconomy) {
+		this.seatPriceEconomy = seatPriceEconomy;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -24,6 +24,10 @@ public class RouteDAO extends BaseDAO<Route>{
 	public List<Route> readAllRoutes() throws ClassNotFoundException, SQLException{
 		return read("select * from route", new Object[] {});
 	}
+	
+	public int addRoute(Route route) throws ClassNotFoundException, SQLException{
+		return saveReturnPK("insert into route values (?,?, ?)", new Object[] {null, route.getOrigin(),route.getDestination()});
+	}
 
 	@Override
 	public List<Route> extractData(ResultSet rs) throws ClassNotFoundException, SQLException {

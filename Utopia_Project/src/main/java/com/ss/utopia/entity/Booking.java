@@ -7,6 +7,7 @@ public class Booking {
 	private Integer id;
 	private Boolean isActive;
 	private String confirmationCode;
+	private Integer seatClass;
 	
 	public Integer getId() {
 		return id;
@@ -32,6 +33,14 @@ public class Booking {
 		this.confirmationCode = confirmationCode;
 	}
 	
+	public Integer getSeatClass() {
+		return seatClass;
+	}
+
+	public void setSeatClass(Integer seatClass) {
+		this.seatClass = seatClass;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
